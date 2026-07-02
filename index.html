@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Soap Pendant Small — BOMMA</title>
+  <style>
+    @font-face { font-family:'BommaOFF'; font-weight:300; font-display:swap; src:url('https://bomma-eshop.myshopify.com/cdn/shop/t/2/assets/BommaOFF-Light.woff') format('woff'); }
+    @font-face { font-family:'BommaOFF'; font-weight:400; font-display:swap; src:url('https://bomma-eshop.myshopify.com/cdn/shop/t/2/assets/BommaOFF-Regular.woff') format('woff'); }
+    @font-face { font-family:'BommaOFF'; font-weight:500; font-display:swap; src:url('https://bomma-eshop.myshopify.com/cdn/shop/t/2/assets/BommaOFF-Medium.woff') format('woff'); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root { --fg:#141414; --muted:#7a7671; --line:#e7e4df; --bg:#fff; --soft:#f6f4f1; }
+    body { font-family:'BommaOFF',-apple-system,'Segoe UI',sans-serif; color:var(--fg); background:var(--bg); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; } img { max-width:100%; display:block; }
+    h1,h2,h3 { font-weight:400; }
+    .wrap { max-width:1360px; margin:0 auto; padding-inline:48px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:12px; color:var(--muted); }
+    svg { display:block; }
+    .demo-bar { background:#141414; color:#fff; font-size:13px; letter-spacing:.04em; text-align:center; padding:8px 16px; }
+    .demo-bar b { font-weight:500; }
+    .demo-bar span { opacity:.7; }
+
+    .hdr { display:flex; align-items:center; gap:40px; padding:20px 48px; border-bottom:1px solid var(--line); position:sticky; top:0; background:#fff; z-index:40; }
+    .hdr__logo { font-size:30px; font-weight:300; letter-spacing:.01em; }
+    .hdr__nav { display:flex; gap:32px; flex:1; }
+    .hdr__nav a { font-size:22px; font-weight:300; } .hdr__nav a:hover { opacity:.55; }
+    .hdr__actions { display:flex; align-items:center; gap:22px; }
+    .hdr__actions a, .hdr__actions button { display:inline-flex; align-items:center; gap:8px; font-size:14px; background:none; border:0; font-family:inherit; color:inherit; cursor:pointer; }
+    .hdr__actions a:hover, .hdr__actions button:hover { opacity:.6; }
+    .hdr__actions svg { width:22px; height:22px; }
+    .badge { position:relative; }
+    .badge__n { position:absolute; top:-8px; right:-10px; background:var(--fg); color:#fff; font-size:11px; min-width:17px; height:17px; border-radius:999px; display:flex; align-items:center; justify-content:center; padding:0 4px; }
+
+    .crumb { padding:20px 0 4px; font-size:13px; color:var(--muted); }
+    .crumb a:hover { color:var(--fg); }
+    .pdp { display:grid; grid-template-columns:1.15fr 1fr; gap:56px; padding:24px 0 72px; }
+    .gal__main { aspect-ratio:1/1; background:var(--soft); overflow:hidden; }
+    .gal__main img { width:100%; height:100%; object-fit:contain; padding:6%; }
+    .gal__thumbs { display:flex; gap:12px; margin-top:12px; }
+    .gal__thumbs img { width:80px; height:80px; object-fit:cover; background:var(--soft); cursor:pointer; opacity:.5; transition:.2s; }
+    .gal__thumbs img.active, .gal__thumbs img:hover { opacity:1; }
+    .info { position:sticky; top:100px; align-self:start; }
+    .info .eyebrow { display:block; margin-bottom:8px; }
+    .title { font-size:40px; line-height:1.05; text-transform:lowercase; }
+    .subtitle { color:var(--muted); margin:6px 0 20px; font-size:16px; } .subtitle b { color:var(--fg); font-weight:400; }
+    .price { font-size:26px; margin-bottom:8px; }
+    .avail { display:inline-flex; align-items:center; gap:7px; color:#2e7d32; font-size:14px; margin-bottom:22px; } .avail svg { width:16px; height:16px; }
+    .opt { margin-bottom:20px; }
+    .opt__label { text-transform:uppercase; letter-spacing:.1em; font-size:12px; color:var(--muted); margin-bottom:9px; }
+    .opt__vals { display:flex; flex-wrap:wrap; gap:9px; }
+    .opt__btn { border:1px solid var(--line); background:#fff; padding:10px 18px; font:inherit; font-size:14px; cursor:pointer; transition:.15s; }
+    .opt__btn:hover { border-color:#999; } .opt__btn.sel { border-color:var(--fg); background:var(--fg); color:#fff; }
+    .buy-row { display:flex; gap:12px; margin-top:26px; }
+    .qty { display:flex; align-items:center; border:1px solid var(--line); } .qty button { width:42px; background:none; border:0; font-size:20px; cursor:pointer; } .qty span { width:40px; text-align:center; }
+    .btn-buy { flex:1; background:var(--fg); color:#fff; border:0; font:inherit; font-size:16px; letter-spacing:.04em; padding:15px 22px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:10px; transition:.2s; }
+    .btn-buy:hover { background:#000; } .btn-buy svg { width:19px; height:19px; }
+    .btn-ghost { width:100%; margin-top:10px; background:#fff; color:var(--fg); border:1px solid var(--line); font:inherit; font-size:14px; padding:12px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+    .btn-ghost:hover { border-color:var(--fg); } .btn-ghost svg { width:16px; height:16px; }
+    .trust { display:flex; gap:22px; flex-wrap:wrap; margin-top:22px; padding-top:22px; border-top:1px solid var(--line); }
+    .trust div { display:flex; align-items:center; gap:9px; font-size:13px; color:#555; } .trust svg { width:20px; height:20px; color:var(--fg); }
+    .cart-panel { border:1px solid var(--line); margin-top:24px; padding:18px; background:var(--soft); }
+    .cart-panel__head { display:flex; justify-content:space-between; margin-bottom:10px; } .cart-panel__head b { font-weight:500; }
+    .cart-line { display:flex; gap:12px; padding:9px 0; border-top:1px solid var(--line); font-size:14px; align-items:center; }
+    .cart-line img { width:42px; height:42px; object-fit:cover; background:#fff; } .cart-line__m { flex:1; } .cart-line__m small { color:var(--muted); }
+    .cart-line__x { cursor:pointer; color:var(--muted); font-size:18px; line-height:1; } .cart-line__x:hover { color:var(--fg); }
+    .cart-empty { color:var(--muted); font-size:14px; }
+    .checkout { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; border:1px solid var(--fg); padding:12px; font-size:14px; transition:.2s; cursor:pointer; } .checkout:hover { background:var(--fg); color:#fff; } .checkout svg{width:16px;height:16px;}
+    .sec { padding:60px 0; border-top:1px solid var(--line); }
+    .sec > .wrap > h2 { font-size:13px; text-transform:uppercase; letter-spacing:.2em; color:var(--muted); margin-bottom:30px; }
+    .specs { display:grid; grid-template-columns:1fr 1fr; gap:0 56px; }
+    .spec { display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid var(--line); }
+    .spec svg { width:24px; height:24px; color:var(--fg); flex:none; margin-top:1px; }
+    .spec__k { font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; } .spec__v { font-size:15px; } .spec__t { flex:1; }
+    .dl-grid { display:flex; flex-wrap:wrap; gap:14px; }
+    .dl { display:flex; align-items:center; gap:12px; border:1px solid var(--line); padding:14px 20px; min-width:230px; transition:.2s; cursor:pointer; } .dl:hover { border-color:var(--fg); } .dl svg { width:22px; height:22px; flex:none; } .dl small { display:block; color:var(--muted); font-size:12px; }
+    .designer .wrap { display:grid; grid-template-columns:1fr 2fr; gap:48px; align-items:start; }
+    .designer h3 { font-size:32px; margin-bottom:14px; } .designer p { color:#4a4a4a; font-weight:300; max-width:60ch; }
+    .refs { columns:2; column-gap:48px; font-size:15px; color:#555; } .refs div { padding:6px 0; break-inside:avoid; }
+    footer { border-top:1px solid var(--line); padding:60px 0 28px; }
+    .foot { display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; }
+    .foot__brand { font-size:28px; font-weight:300; }
+    .foot h4 { text-transform:uppercase; letter-spacing:.14em; font-size:12px; color:var(--muted); margin-bottom:14px; }
+    .foot ul { list-style:none; } .foot li { margin-bottom:8px; font-size:14px; } .foot a:hover { opacity:.55; }
+    .foot__bottom { display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; margin-top:48px; padding-top:20px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); } .foot__bottom a { margin-left:16px; }
+    .toast { position:fixed; right:24px; bottom:24px; background:#141414; color:#fff; padding:15px 20px; display:none; align-items:center; gap:16px; z-index:60; box-shadow:0 10px 40px rgba(0,0,0,.25); } .toast.show { display:flex; } .toast a,.toast button { color:#fff; text-decoration:underline; white-space:nowrap; background:none; border:0; font:inherit; cursor:pointer; }
+    @media (max-width:900px){
+      .wrap { padding-inline:20px; } .hdr { flex-wrap:wrap; gap:14px; padding:14px 20px; }
+      .hdr__nav { order:3; width:100%; overflow-x:auto; gap:20px; } .hdr__nav a { font-size:16px; }
+      .pdp { grid-template-columns:1fr; gap:28px; } .info { position:static; } .title { font-size:32px; }
+      .specs { grid-template-columns:1fr; } .designer .wrap { grid-template-columns:1fr; gap:20px; } .refs { columns:1; } .foot { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-bar">Ukázka <b>Varianty B</b> — tato stránka je hostovaná <b>mimo Shopify</b> (GitHub Pages), jako by běžela na bomma.cz. Nákup je „nadrátovaný" do Shopify. <span>Neindexováno.</span></div>
+
+  <header class="hdr">
+    <div class="hdr__logo"><a href="./">bomma</a></div>
+    <nav class="hdr__nav">
+      <a href="https://www.bomma.cz/lighting/" target="_blank">Svítidla</a>
+      <a href="https://www.bomma.cz/lighting-collections/" target="_blank">Kolekce</a>
+      <a href="https://www.bomma.cz/projects/" target="_blank">Projekty</a>
+      <a href="https://www.bomma.cz/about-bomma/" target="_blank">O značce</a>
+      <a href="https://www.bomma.cz/store-locator/" target="_blank">Store Locator</a>
+    </nav>
+    <div class="hdr__actions">
+      <a href="https://bomma-eshop.myshopify.com/account" target="_blank" title="Zákaznický profil (Shopify)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>Účet</span>
+      </a>
+      <button class="badge" id="cartBtn" title="Košík → Shopify pokladna">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="badge__n" id="countBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="https://www.bomma.cz/lighting/" target="_blank">Svítidla</a> / <a href="https://www.bomma.cz/lighting/soap/" target="_blank">Soap</a> / <span>Pendant small</span></div>
+    <div class="pdp">
+      <div class="gal">
+        <div class="gal__main"><img id="mainImg" src="https://www.bomma.cz/app/uploads/2022/11/bomma_soap_clear_smal_lpng.png" alt="Soap pendant small"></div>
+        <div class="gal__thumbs" id="thumbs">
+          <img class="active" src="https://www.bomma.cz/app/uploads/2022/11/bomma_soap_clear_smal_lpng.png" alt="">
+          <img src="https://www.bomma.cz/app/uploads/2022/11/soap5_bybomma.png" alt="">
+          <img src="https://www.bomma.cz/app/uploads/2023/04/soap-pendant-s.png" alt="">
+          <img src="https://www.bomma.cz/app/uploads/2022/11/bomma_collection_soap_01.jpg" alt="">
+        </div>
+      </div>
+      <div class="info">
+        <span class="eyebrow">Soap</span>
+        <h1 class="title">pendant small</h1>
+        <div class="subtitle"><b id="sColor">clear</b> · <b id="sMount">brushed silver</b></div>
+        <div class="price" id="price">24 500 Kč</div>
+        <div class="avail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Skladem · expedice do 3 týdnů</div>
+        <div class="opt">
+          <div class="opt__label">Barva skla</div>
+          <div class="opt__vals" data-group="color">
+            <button class="opt__btn" data-val="Pearl">Pearl</button>
+            <button class="opt__btn sel" data-val="Clear">Clear</button>
+            <button class="opt__btn" data-val="Blue">Blue</button>
+            <button class="opt__btn" data-val="Gold">Gold</button>
+          </div>
+        </div>
+        <div class="opt">
+          <div class="opt__label">Montura</div>
+          <div class="opt__vals" data-group="mount">
+            <button class="opt__btn" data-val="Brushed Gold">Brushed Gold</button>
+            <button class="opt__btn sel" data-val="Brushed Silver">Brushed Silver</button>
+          </div>
+        </div>
+        <div class="buy-row">
+          <div class="qty"><button id="qMinus">–</button><span id="qVal">1</span><button id="qPlus">+</button></div>
+          <button class="btn-buy" id="buyBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg> Přidat do košíku</button>
+        </div>
+        <button class="btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.4-9.3-8.3C1 9.5 2.4 6 5.7 6c2 0 3.3 1.4 4.3 2.6C11 7.4 12.3 6 14.3 6 17.6 6 19 9.5 17.3 12.7 15 16.6 12 21 12 21z"/></svg> Přidat do výběru</button>
+        <div class="trust">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg> Doprava po ČR i do zahraničí</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V7l8-4z"/></svg> Ruční výroba · originál</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v4h4"/></svg> Vrácení do 14 dní</div>
+        </div>
+        <div class="cart-panel">
+          <div class="cart-panel__head"><b>Košík</b><span id="cartTxt">0 položek</span></div>
+          <div id="cartLines"><div class="cart-empty">Košík je zatím prázdný.</div></div>
+          <a class="checkout" id="checkoutLink" style="display:none" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Přejít do pokladny (Shopify)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec"><div class="wrap"><h2>Parametry</h2><div class="specs">
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><path d="M12 4v16"/></svg><div class="spec__t"><div class="spec__k">Průměr</div><div class="spec__v">140 – 240 mm</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v18M8 6l4-3 4 3M8 18l4 3 4-3"/></svg><div class="spec__t"><div class="spec__k">Výška</div><div class="spec__v">275 – 375 mm</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 1 4 10.5c-.8.7-1 1.2-1 2.5H9c0-1.3-.2-1.8-1-2.5A6 6 0 0 1 12 3z"/></svg><div class="spec__t"><div class="spec__k">Světelný zdroj</div><div class="spec__v">LED E27, max. 13 W</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="10" r="6"/><path d="M9 20h6M10 22h4"/></svg><div class="spec__t"><div class="spec__k">Žárovka v balení</div><div class="spec__v">1× E27, A60 LED, 6,5 W, 600 lm, 2700 K, Ra90+</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-2M8 12h1M15 12h1M12 8v1"/></svg><div class="spec__t"><div class="spec__k">Stmívání</div><div class="spec__v">Stmívatelné (TRIAC); na přání DALI, RF/Wi-Fi</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 6h8l3 14H5L8 6z"/><path d="M10 6a2 2 0 1 1 4 0"/></svg><div class="spec__t"><div class="spec__k">Hmotnost</div><div class="spec__v">± 1,6 kg</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8l9-5 9 5v8l-9 5-9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><div class="spec__t"><div class="spec__k">Rozměr balení</div><div class="spec__v">310 × 310 × 470 mm</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4v6a4 4 0 0 0 8 0V4M8 20v-6"/><path d="M14 14h6v3a3 3 0 0 1-6 0z"/></svg><div class="spec__t"><div class="spec__k">Délka kabelu</div><div class="spec__v">Textilní kabel 2,5 m (šedá)</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3h12l3 6-9 12L3 9l3-6z"/><path d="M3 9h18M9 3l3 6 3-6"/></svg><div class="spec__t"><div class="spec__k">Materiál</div><div class="spec__v">Ručně foukaný křišťál</div></div></div>
+    <div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><div class="spec__t"><div class="spec__k">Poznámka</div><div class="spec__v">Skleněné části jsou foukané bez formy — tvar, velikost i sytost barvy se mohou mírně lišit.</div></div></div>
+  </div></div></section>
+
+  <section class="sec"><div class="wrap"><h2>Ke stažení</h2><div class="dl-grid">
+    <a class="dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M12 12v6M9 15l3 3 3-3"/></svg><div>Datový list <small>PDF · 0,4 MB</small></div></a>
+    <a class="dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8l9-5 9 5v8l-9 5-9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><div>3D model <small>STEP · 2,1 MB</small></div></a>
+    <a class="dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg><div>Instalační návod <small>PDF · 0,8 MB</small></div></a>
+    <a class="dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3a6 6 0 0 1 4 10.5c-.8.7-1 1.2-1 2.5H9c0-1.3-.2-1.8-1-2.5A6 6 0 0 1 12 3z"/><path d="M9 18h6M10 21h4"/></svg><div>Fotometrie <small>IES / LDT</small></div></a>
+  </div></div></section>
+
+  <section class="sec designer"><div class="wrap">
+    <div><span class="eyebrow">Designér</span><h3>Ota Svoboda</h3></div>
+    <div><p>Po studiu na sklářské škole v Novém Boru byl Ota Svoboda součástí designového dua Born in Bor. V roce 2013 nastoupil do BOMMA, kde se díky mimořádnému talentu brzy stal vedoucím vývoje produktů. Kolekce Soap je jeho hledáním okamžiku, kdy sklo přestává být materiálem a stává se světlem.</p>
+      <div class="refs" style="margin-top:26px"><div>The Edge Restaurant &amp; Bar, British Columbia</div><div>Private Barn in Kent, UK</div><div>Interior with integrated wine cellar, Florida</div><div>Tingxiang Villa, China</div><div>Apartment in brown tones</div><div>Private villa, Channel Islands</div></div>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap"><div class="foot">
+    <div><div class="foot__brand">bomma</div></div>
+    <div><h4>Kolekce</h4><ul><li><a href="https://www.bomma.cz/lighting-collections/" target="_blank">Lighting collections</a></li><li><a href="https://www.bomma.cz/lighting-constellations/" target="_blank">Lighting constellations</a></li><li><a href="https://www.bomma.cz/glass-objects/" target="_blank">Glass objects</a></li></ul></div>
+    <div><h4>Bomma</h4><ul><li><a href="https://www.bomma.cz/about-bomma/" target="_blank">O značce</a></li><li><a href="https://www.bomma.cz/projects/" target="_blank">Projekty</a></li><li><a href="https://www.bomma.cz/store-locator/" target="_blank">Store locator</a></li></ul></div>
+    <div><h4>Informace</h4><ul><li><a href="https://www.bomma.cz/downloads/" target="_blank">Downloads</a></li><li><a href="mailto:info@bomma.cz">info@bomma.cz</a></li><li><a href="https://bomma-eshop.myshopify.com/account" target="_blank">Zákaznický profil</a></li></ul></div>
+  </div><div class="foot__bottom"><div>© BOMMA · Handmade design crystal lighting</div><div><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Cookies</a></div></div></div></footer>
+
+  <div class="toast" id="toast"><span id="toastMsg">Přidáno do košíku.</span><button id="toastCheckout">Do pokladny →</button></div>
+
+  <script>
+    const STORE = 'https://bomma-eshop.myshopify.com';
+    const VARIANTS = {
+      'Pearl|Brushed Gold':{id:55837248651649,price:24500},'Pearl|Brushed Silver':{id:55837248684417,price:24500},
+      'Clear|Brushed Gold':{id:55837248717185,price:24500},'Clear|Brushed Silver':{id:55837248749953,price:24500},
+      'Blue|Brushed Gold':{id:55837248782721,price:26500},'Blue|Brushed Silver':{id:55837248815489,price:26500},
+      'Gold|Brushed Gold':{id:55837248848257,price:26500},'Gold|Brushed Silver':{id:55837248881025,price:26500}
+    };
+    const IMG = 'https://www.bomma.cz/app/uploads/2022/11/bomma_soap_clear_smal_lpng.png';
+    let sel = { color:'Clear', mount:'Brushed Silver' }, qty = 1;
+    let cart = JSON.parse(localStorage.getItem('bommaCartB') || '[]');
+    const czk = n => n.toLocaleString('cs-CZ') + ' Kč';
+    const current = () => VARIANTS[sel.color + '|' + sel.mount];
+    function render(){ document.getElementById('price').textContent = czk(current().price); document.getElementById('sColor').textContent = sel.color.toLowerCase(); document.getElementById('sMount').textContent = sel.mount.toLowerCase(); }
+
+    document.querySelectorAll('.opt__vals').forEach(g => { const key=g.dataset.group; g.querySelectorAll('.opt__btn').forEach(b => b.addEventListener('click', () => { g.querySelectorAll('.opt__btn').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); sel[key]=b.dataset.val; render(); })); });
+    document.querySelectorAll('#thumbs img').forEach(t => t.addEventListener('click', () => { document.getElementById('mainImg').src=t.src; document.querySelectorAll('#thumbs img').forEach(x=>x.classList.remove('active')); t.classList.add('active'); }));
+    document.getElementById('qMinus').onclick=()=>{qty=Math.max(1,qty-1);document.getElementById('qVal').textContent=qty;};
+    document.getElementById('qPlus').onclick=()=>{qty+=1;document.getElementById('qVal').textContent=qty;};
+
+    function permalink(){ if(!cart.length) return STORE + '/cart'; return STORE + '/cart/' + cart.map(i=>i.id+':'+i.qty).join(','); }
+    function save(){ localStorage.setItem('bommaCartB', JSON.stringify(cart)); }
+
+    document.getElementById('buyBtn').onclick = () => {
+      const v = current(); const key = sel.color+' / '+sel.mount;
+      const ex = cart.find(i => i.id === v.id);
+      if (ex) ex.qty += qty; else cart.push({ id:v.id, qty:qty, title:'Soap', variant:key, price:v.price, img:IMG });
+      save(); renderCart(); showToast('Přidáno: Soap – ' + key);
+    };
+
+    function renderCart(){
+      const n = cart.reduce((s,i)=>s+i.qty,0);
+      document.getElementById('countBadge').textContent = n;
+      document.getElementById('cartTxt').textContent = n + (n===1?' položka':(n>=2&&n<=4?' položky':' položek'));
+      const lines = document.getElementById('cartLines'), co = document.getElementById('checkoutLink');
+      if(!cart.length){ lines.innerHTML='<div class="cart-empty">Košík je zatím prázdný.</div>'; co.style.display='none'; return; }
+      lines.innerHTML = cart.map((it,ix)=>'<div class="cart-line"><img src="'+it.img+'" alt=""><div class="cart-line__m">'+it.title+'<br><small>'+it.variant+' · '+it.qty+'×</small></div><div>'+czk(it.price*it.qty)+'</div><div class="cart-line__x" data-ix="'+ix+'">×</div></div>').join('');
+      lines.querySelectorAll('.cart-line__x').forEach(x=>x.onclick=()=>{ cart.splice(+x.dataset.ix,1); save(); renderCart(); });
+      co.href = permalink(); co.style.display='flex';
+    }
+    document.getElementById('cartBtn').onclick = () => { window.open(permalink(), '_blank'); };
+    document.getElementById('toastCheckout').onclick = () => { window.open(permalink(), '_blank'); };
+    let tt; function showToast(m){ document.getElementById('toastMsg').textContent=m; const t=document.getElementById('toast'); t.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove('show'),6000); }
+    render(); renderCart();
+  </script>
+</body>
+</html>
