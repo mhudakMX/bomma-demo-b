@@ -1024,6 +1024,11 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     var panel=document.createElement('div'); panel.className='bx-cart'; panel.id='bxCartPanel'; document.body.appendChild(panel);
     var toast=document.createElement('div'); toast.className='bx-toast'; toast.id='bxToast'; document.body.appendChild(toast);
     var flag=document.createElement('div'); flag.className='bx-flag'; flag.innerHTML='DEMO · <b>Varianta B</b> · hostováno mimo Shopify'; document.body.appendChild(flag);
+    /* skrýt rozbité cross-origin obrázky (WP thumbnaily co 404) */
+    [].forEach.call(document.images, function(im){ if(im.complete && im.naturalWidth===0) im.style.display='none'; im.addEventListener('error', function(){ im.style.display='none'; }); });
+    /* auto-odkliknout bomma cookie lištu, ať je demo čisté */
+    function bxCookie(){ var e=document.querySelectorAll('button,a,[role="button"]'); for(var i=0;i<e.length;i++){ var t=(e[i].textContent||'').trim().toLowerCase(); if(/^(agree|accept|souhlas|přijmout|rozumím|povolit)/.test(t)){ try{ e[i].click(); }catch(x){} return; } } }
+    [400,1200,2500,4000].forEach(function(d){ setTimeout(bxCookie, d); });
     render();
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', main); else main();
