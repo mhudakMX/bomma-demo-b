@@ -950,8 +950,11 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 
   /* dorovnání vůči zdrojové bomma.cz (na statické kopii se nespustí bomma JS) */
   .site-header{padding-top:38px !important;padding-bottom:38px !important;box-shadow:none !important}
-  .vertical-gallery{display:block !important}
-  .vertical-gallery img{display:block !important;width:150px !important;height:auto !important;margin:0 0 12px !important}
+  .vertical-gallery{display:block !important;padding-right:24px !important}
+  .bx-gal-main{width:100% !important;max-width:520px !important;height:auto !important;display:block !important;margin:0 0 16px !important;background:#f6f4f1}
+  .bx-gal-thumbs{display:flex !important;gap:10px !important;flex-wrap:wrap !important}
+  .bx-gal-thumbs img{width:88px !important;height:88px !important;object-fit:cover !important;background:#f6f4f1;cursor:pointer;opacity:.55;transition:.2s;margin:0 !important}
+  .bx-gal-thumbs img.active,.bx-gal-thumbs img:hover{opacity:1}
   .bx-buy{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#141414;color:#fff;border:0;font-family:inherit;font-size:16px;letter-spacing:.03em;padding:15px 26px;cursor:pointer;margin:0 0 12px;width:100%;max-width:380px;transition:background .2s}
   .bx-buy:hover{background:#000}
   .bx-buy svg{width:19px;height:19px}
@@ -1029,6 +1032,18 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
       btns.parentNode.insertBefore(price, btns);
       btns.parentNode.insertBefore(avail, btns);
       btns.insertBefore(buy, btns.firstChild);
+    }
+    /* přestavba galerie: velká hlavní fotka + řada klikacích náhledů (bomma flex se na kopii nesestaví) */
+    var gal=document.querySelector('.vertical-gallery');
+    if(gal){
+      var srcs=[].slice.call(gal.querySelectorAll('img')).map(function(i){return i.currentSrc||i.getAttribute('src');}).filter(Boolean);
+      if(srcs.length){
+        gal.innerHTML='';
+        var gmain=document.createElement('img'); gmain.className='bx-gal-main'; gmain.src=srcs[0]; gal.appendChild(gmain);
+        var grow=document.createElement('div'); grow.className='bx-gal-thumbs';
+        srcs.forEach(function(s,i){ var t=document.createElement('img'); t.src=s; if(i===0)t.className='active'; t.addEventListener('click',function(){ gmain.src=s; [].slice.call(grow.children).forEach(function(x){x.classList.remove('active');}); t.classList.add('active'); }); grow.appendChild(t); });
+        gal.appendChild(grow);
+      }
     }
     /* panels */
     var panel=document.createElement('div'); panel.className='bx-cart'; panel.id='bxCartPanel'; document.body.appendChild(panel);
