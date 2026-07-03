@@ -1011,14 +1011,8 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     /* buy area */
     var btns=document.querySelector('.header-product__btns');
     if(btns){
-      var price=document.createElement('div'); price.className='bx-price'; price.textContent=czk(PRICE);
-      var avail=document.createElement('div'); avail.className='bx-avail'; avail.innerHTML=checkSvg+'<span>Skladem · expedice do 3 týdnů</span>';
       var buy=document.createElement('button'); buy.className='bx-buy'; buy.type='button'; buy.innerHTML=bagSvg+' Přidat do košíku'; buy.onclick=addItem;
-      var trust=document.createElement('div'); trust.className='bx-trust'; trust.innerHTML='<div>'+truckSvg+'<span>Doprava po ČR i do zahraničí</span></div><div>'+shieldSvg+'<span>Ruční výroba · originál</span></div><div>'+returnSvg+'<span>Vrácení do 14 dní</span></div>';
-      btns.parentNode.insertBefore(price, btns);
-      btns.parentNode.insertBefore(avail, btns);
       btns.insertBefore(buy, btns.firstChild);
-      if(btns.nextSibling) btns.parentNode.insertBefore(trust, btns.nextSibling); else btns.parentNode.appendChild(trust);
     }
     /* panels */
     var panel=document.createElement('div'); panel.className='bx-cart'; panel.id='bxCartPanel'; document.body.appendChild(panel);
