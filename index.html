@@ -942,8 +942,6 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 </script>
 
 <style>
-  /* štíhlejší, lehčí hlavička (na kopii se nespustí bomma JS řídící výšku) */
-  .site-header{padding-top:14px !important;padding-bottom:14px !important;box-shadow:none !important}
   .bx-buy{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#141414;color:#fff;border:0;font-family:inherit;font-size:16px;letter-spacing:.03em;padding:15px 26px;cursor:pointer;margin:0 0 12px;width:100%;max-width:380px;transition:background .2s}
   .bx-buy:hover{background:#000}
   .bx-buy svg{width:19px;height:19px}
@@ -1013,7 +1011,13 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     /* buy area */
     var btns=document.querySelector('.header-product__btns');
     if(btns){
+      var price=document.createElement('div'); price.className='bx-price'; price.textContent=czk(PRICE);
+      var avail=document.createElement('div'); avail.className='bx-avail'; avail.innerHTML=checkSvg+'<span>Skladem · expedice do 3 týdnů</span>';
       var buy=document.createElement('button'); buy.className='bx-buy'; buy.type='button'; buy.innerHTML=bagSvg+' Přidat do košíku'; buy.onclick=addItem;
+      /* skrýt původní bomma tlačítko „add to your selection" */
+      Array.prototype.slice.call(btns.children).forEach(function(ch){ ch.style.display='none'; });
+      btns.parentNode.insertBefore(price, btns);
+      btns.parentNode.insertBefore(avail, btns);
       btns.insertBefore(buy, btns.firstChild);
     }
     /* panels */
