@@ -942,6 +942,10 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 </script>
 
 <style>
+  /* dorovnání vůči zdrojové bomma.cz (na statické kopii se nespustí bomma JS) */
+  .site-header{padding-top:38px !important;padding-bottom:38px !important;box-shadow:none !important}
+  .vertical-gallery{display:block !important}
+  .vertical-gallery img{display:block !important;width:150px !important;height:auto !important;margin:0 0 12px !important}
   .bx-buy{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#141414;color:#fff;border:0;font-family:inherit;font-size:16px;letter-spacing:.03em;padding:15px 26px;cursor:pointer;margin:0 0 12px;width:100%;max-width:380px;transition:background .2s}
   .bx-buy:hover{background:#000}
   .bx-buy svg{width:19px;height:19px}
