@@ -1007,11 +1007,11 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     var html='<h4>Košík ('+n+')</h4>';
     if(!cart.length){ html+='<div style="color:#999;font-size:13px">Košík je zatím prázdný.</div>'; }
     else { html+=cart.map(function(i,ix){return '<div class="bx-line"><img src="'+i.img+'"><div style="flex:1"><b>'+i.t+'</b><br><span style="color:#999">'+i.v+' · '+i.qty+'×</span></div><div>'+czk(i.p*i.qty)+'</div><span class="bx-x" data-ix="'+ix+'">×</span></div>'}).join('');
-      html+='<a class="bx-co" href="'+permalink()+'" target="_blank">'+bagSvg.replace('width="24"','')+' Přejít do pokladny (Shopify)</a>'; }
+      html+='<a class="bx-co" href="'+permalink()+'" target="_blank">'+bagSvg.replace('width="24"','')+' Přejít do košíku (Shopify)</a>'; }
     panel.innerHTML=html;
     var xs=panel.querySelectorAll('.bx-x'); for(var k=0;k<xs.length;k++){ xs[k].onclick=function(){ cart.splice(+this.getAttribute('data-ix'),1); save(); render(); }; }
   }
-  var tt; function showToast(m){ var t=document.getElementById('bxToast'); t.innerHTML=m+' <a href="'+permalink()+'" target="_blank">Do pokladny →</a>'; t.classList.add('show'); var p=document.getElementById('bxCartPanel'); if(p) p.classList.add('open'); clearTimeout(tt); tt=setTimeout(function(){t.classList.remove('show')},5000); }
+  var tt; function showToast(m){ var t=document.getElementById('bxToast'); t.innerHTML=m+' <a href="'+permalink()+'" target="_blank">Do košíku →</a>'; t.classList.add('show'); var p=document.getElementById('bxCartPanel'); if(p) p.classList.add('open'); clearTimeout(tt); tt=setTimeout(function(){t.classList.remove('show')},5000); }
   function main(){
     /* header icons */
     var hi=document.querySelector('.megamenu__icons--header') || document.querySelector('.site-header');
