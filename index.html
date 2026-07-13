@@ -998,7 +998,7 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
   var returnSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v4h4"/></svg>';
   function czk(n){return n.toLocaleString('cs-CZ')+' Kč';}
   function save(){try{localStorage.setItem('bxCart',JSON.stringify(cart))}catch(e){}}
-  function permalink(){ if(!cart.length) return STORE+'/cart'; return STORE+'/cart/'+cart.map(function(i){return i.id+':'+i.qty}).join(','); }
+  function permalink(){ if(!cart.length) return STORE+'/cart'; return STORE+'/cart/'+cart.map(function(i){return i.id+':'+i.qty}).join(',')+'?return_to=/cart'; }
   function addItem(){ var ex=cart.filter(function(i){return i.id===VARIANT})[0]; if(ex) ex.qty++; else cart.push({id:VARIANT,qty:1,t:'Soap pendant small',v:'clear / brushed silver',p:PRICE,img:IMG}); save(); render(); showToast('Přidáno do košíku'); }
   function render(){
     var n=cart.reduce(function(s,i){return s+i.qty},0);
