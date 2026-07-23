@@ -34,6 +34,9 @@
   .wc-card shopify-media, .wc-card img { width:100%; height:auto; }
   .wc-title { font-size:14px; margin:10px 0 4px; min-height:34px; }
   .wc-price { font-size:15px; margin-bottom:10px; }
+  .wc-btn { width:100%; padding:10px; border:0; background:#111; color:#fff; font:inherit; cursor:pointer; letter-spacing:.5px; }
+  .wc-btn:hover { background:#333; }
+  .wc-btn[disabled] { opacity:.4; cursor:not-allowed; }
 </style>
 </head>
 <body>
@@ -143,21 +146,20 @@
       '<shopify-store store-domain="'+domain+'" public-access-token="'+token+'" country="CZ" language="CS"></shopify-store>' +
       '<shopify-context type="collection" handle="'+handle+'">' +
         '<template>' +
-          '<div class="wc-grid">' +
-            '<shopify-list-context query="collection.products" first="12">' +
-              '<template>' +
-                '<div class="wc-card">' +
-                  '<shopify-media query="product.featuredImage" width="260" height="260"></shopify-media>' +
-                  '<div class="wc-title"><shopify-data query="product.title"></shopify-data></div>' +
-                  '<div class="wc-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>' +
-                  '<shopify-buy-button query="product.selectedOrFirstAvailableVariant"></shopify-buy-button>' +
-                '</div>' +
-              '</template>' +
-            '</shopify-list-context>' +
-          '</div>' +
+          '<shopify-list-context class="wc-grid" type="product" query="collection.products" first="12">' +
+            '<template>' +
+              '<div class="wc-card">' +
+                '<shopify-media query="product.featuredImage" width="240" height="240"></shopify-media>' +
+                '<div class="wc-title"><shopify-data query="product.title"></shopify-data></div>' +
+                '<div class="wc-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>' +
+                '<button class="wc-btn" onclick="document.getElementById(\'cart\').addLine(event).showModal();" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">Přidat do košíku</button>' +
+              '</div>' +
+            '</template>' +
+          '</shopify-list-context>' +
         '</template>' +
+        '<div slot="loading" class="empty">Načítám produkty…</div>' +
       '</shopify-context>' +
-      '<shopify-cart></shopify-cart>';
+      '<shopify-cart id="cart"></shopify-cart>';
     if (!loadedWC) {
       loadedWC = true;
       loadScript('https://cdn.shopify.com/storefront/web-components.js');
