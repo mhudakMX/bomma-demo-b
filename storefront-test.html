@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bomma — test vystavení zboží mimo Shopify</title>
+<style>
+  :root { --ink:#111; --line:#e7e4df; --muted:#777; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:var(--ink); background:#fff; line-height:1.5; }
+  .wrap { max-width: 1180px; margin:0 auto; padding: 32px 24px 80px; }
+  h1 { font-weight: 400; font-size: 30px; letter-spacing:.5px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 28px; font-size:15px; }
+  .panel { border:1px solid var(--line); padding:20px 22px; margin-bottom:28px; background:#faf9f7; }
+  .panel label { display:block; font-size:13px; color:var(--muted); margin-bottom:4px; }
+  .row { display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; }
+  .row > div { flex:1 1 200px; min-width:180px; }
+  input[type=text] { width:100%; padding:10px 12px; border:1px solid var(--line); font:inherit; background:#fff; border-radius:0; }
+  button.go { padding:11px 22px; border:0; background:var(--ink); color:#fff; font:inherit; cursor:pointer; letter-spacing:.5px; }
+  button.go:hover { opacity:.85; }
+  .note { font-size:12.5px; color:var(--muted); margin-top:12px; }
+  .cols { display:grid; grid-template-columns: 1fr 1fr; gap:40px; }
+  @media (max-width: 900px){ .cols { grid-template-columns:1fr; } }
+  .col h2 { font-weight:400; font-size:20px; margin:0 0 2px; }
+  .col .tag { display:inline-block; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#fff; background:#111; padding:3px 8px; margin-bottom:10px; }
+  .col p.desc { font-size:13px; color:var(--muted); margin:0 0 18px; min-height:52px; }
+  .mount { min-height:120px; border:1px dashed var(--line); padding:14px; }
+  .empty { color:var(--muted); font-size:13px; text-align:center; padding:40px 0; }
+  code { background:#f0eee9; padding:1px 5px; font-size:12.5px; }
+  /* Web Components grid */
+  .wc-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:22px; }
+  .wc-card { border:1px solid var(--line); padding:12px; background:#fff; text-align:center; }
+  .wc-card shopify-media, .wc-card img { width:100%; height:auto; }
+  .wc-title { font-size:14px; margin:10px 0 4px; min-height:34px; }
+  .wc-price { font-size:15px; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Bomma — test: vystavení zboží mimo Shopify</h1>
+  <p class="sub">Kolekce <strong>Závěsná svítidla</strong> zobrazená na externí stránce dvěma způsoby. Tato stránka běží na GitHub Pages, tj. mimo Shopify.</p>
+
+  <div class="panel">
+    <div class="row">
+      <div>
+        <label>Storefront access token (veřejný)</label>
+        <input type="text" id="token" placeholder="vlož token z adminu…" autocomplete="off" spellcheck="false">
+      </div>
+      <div>
+        <label>Doména obchodu</label>
+        <input type="text" id="domain" value="bomma-eshop.myshopify.com">
+      </div>
+      <div style="flex:0 0 auto;">
+        <button class="go" id="load">Načíst zboží</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top:16px;">
+      <div>
+        <label>Kolekce — ID (pro metodu A, Buy Button)</label>
+        <input type="text" id="colId" value="689251090817">
+      </div>
+      <div>
+        <label>Kolekce — handle (pro metodu B, Web Components)</label>
+        <input type="text" id="colHandle" value="zavesna-svitidla">
+      </div>
+    </div>
+    <p class="note">Token si můžeš předvyplnit i přes URL: <code>?token=…</code>. Token je veřejný (Storefront API), takže v URL nevadí.</p>
+  </div>
+
+  <div class="cols">
+    <div class="col">
+      <span class="tag">Metoda A</span>
+      <h2>Buy Button JS</h2>
+      <p class="desc">Klasický embed přes <code>sdks.shopifycdn.com/buy-button</code>. Shopify vykreslí produkty do vlastního iframe/DOM, včetně košíku a přechodu do pokladny.</p>
+      <div class="mount" id="a-mount"><div class="empty">Zadej token a klikni „Načíst zboží".</div></div>
+    </div>
+    <div class="col">
+      <span class="tag">Metoda B</span>
+      <h2>Storefront Web Components</h2>
+      <p class="desc">Novější HTML komponenty (<code>&lt;shopify-store&gt;</code>, <code>&lt;shopify-context&gt;</code>…). Renderují se přímo v našem HTML, plně stylovatelné přes CSS.</p>
+      <div class="mount" id="b-mount"><div class="empty">Zadej token a klikni „Načíst zboží".</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var params = new URLSearchParams(location.search);
+  var $ = function(id){ return document.getElementById(id); };
+  if (params.get('token')) $('token').value = params.get('token');
+  if (params.get('domain')) $('domain').value = params.get('domain');
+  if (params.get('collection')) $('colId').value = params.get('collection');
+  if (params.get('handle')) $('colHandle').value = params.get('handle');
+
+  var loadedBuyButton = false;
+  var loadedWC = false;
+
+  function loadScript(src, cb){
+    var s = document.createElement('script'); s.async = true; s.src = src;
+    s.onload = cb; document.head.appendChild(s);
+  }
+
+  // ---------- Metoda A: Buy Button JS ----------
+  function initA(token, domain, colId){
+    var mount = $('a-mount'); mount.innerHTML = '';
+    function build(){
+      var client = ShopifyBuy.buildClient({ domain: domain, storefrontAccessToken: token });
+      var ui = ShopifyBuy.UI.init(client);
+      ui.createComponent('collection', {
+        id: colId,
+        node: mount,
+        moneyFormat: '%7B%7Bamount_with_comma_separator%7D%7D%20K%C4%8D',
+        options: {
+          product: {
+            iframe: false,
+            contents: { img: true, title: true, price: true, button: true },
+            text: { button: 'Přidat do košíku' },
+            styles: { button: { 'background-color':'#111', ':hover':{'background-color':'#333'}, 'border-radius':'0' } }
+          },
+          cart: {
+            text: { title: 'Košík', total: 'Mezisoučet', notice: '', button: 'Do pokladny' },
+            styles: { button: { 'background-color':'#111', 'border-radius':'0' } }
+          },
+          toggle: { styles: { toggle: { 'background-color':'#111' } } }
+        }
+      });
+    }
+    if (window.ShopifyBuy && window.ShopifyBuy.UI) { build(); }
+    else if (loadedBuyButton) { var t=setInterval(function(){ if(window.ShopifyBuy&&window.ShopifyBuy.UI){clearInterval(t);build();} },150); }
+    else {
+      loadedBuyButton = true;
+      loadScript('https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js', function(){
+        var t=setInterval(function(){ if(window.ShopifyBuy&&window.ShopifyBuy.UI){clearInterval(t);build();} },150);
+      });
+    }
+  }
+
+  // ---------- Metoda B: Storefront Web Components ----------
+  function initB(token, domain, handle){
+    var mount = $('b-mount');
+    mount.innerHTML =
+      '<shopify-store store-domain="'+domain+'" public-access-token="'+token+'" country="CZ" language="CS"></shopify-store>' +
+      '<shopify-context type="collection" handle="'+handle+'">' +
+        '<template>' +
+          '<div class="wc-grid">' +
+            '<shopify-list-context query="collection.products" first="12">' +
+              '<template>' +
+                '<div class="wc-card">' +
+                  '<shopify-media query="product.featuredImage" width="260" height="260"></shopify-media>' +
+                  '<div class="wc-title"><shopify-data query="product.title"></shopify-data></div>' +
+                  '<div class="wc-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>' +
+                  '<shopify-buy-button query="product.selectedOrFirstAvailableVariant"></shopify-buy-button>' +
+                '</div>' +
+              '</template>' +
+            '</shopify-list-context>' +
+          '</div>' +
+        '</template>' +
+      '</shopify-context>' +
+      '<shopify-cart></shopify-cart>';
+    if (!loadedWC) {
+      loadedWC = true;
+      loadScript('https://cdn.shopify.com/storefront/web-components.js');
+    }
+  }
+
+  function run(){
+    var token = $('token').value.trim();
+    var domain = $('domain').value.trim();
+    if (!token) { alert('Nejdřív vlož Storefront access token.'); return; }
+    initA(token, domain, $('colId').value.trim());
+    initB(token, domain, $('colHandle').value.trim());
+  }
+
+  $('load').addEventListener('click', run);
+  if ($('token').value.trim()) run();
+})();
+</script>
+</body>
+</html>
