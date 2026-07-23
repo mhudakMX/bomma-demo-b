@@ -106,29 +106,32 @@
 
   // ---------- Metoda A: Buy Button JS ----------
   function initA(token, domain, colId){
-    var mount = $('a-mount'); mount.innerHTML = '';
+    var mount = $('a-mount'); mount.innerHTML = '<div class="empty">Načítám produkty…</div>';
     function build(){
-      var client = ShopifyBuy.buildClient({ domain: domain, storefrontAccessToken: token, apiVersion: '2024-10' });
-      var ui = ShopifyBuy.UI.init(client);
-      // Buy Button SDK chce ID kolekce jako base64 GID, ne číselné REST ID
-      var cid = /^\d+$/.test(colId) ? btoa('gid://shopify/Collection/' + colId) : colId;
-      ui.createComponent('collection', {
-        id: cid,
-        node: mount,
-        moneyFormat: '%7B%7Bamount_with_comma_separator%7D%7D%20K%C4%8D',
-        options: {
-          product: {
-            iframe: false,
-            contents: { img: true, title: true, price: true, button: true },
-            text: { button: 'Přidat do košíku' },
-            styles: { button: { 'background-color':'#111', ':hover':{'background-color':'#333'}, 'border-radius':'0' } }
-          },
-          cart: {
-            text: { title: 'Košík', total: 'Mezisoučet', notice: '', button: 'Do pokladny' },
-            styles: { button: { 'background-color':'#111', 'border-radius':'0' } }
-          },
-          toggle: { styles: { toggle: { 'background-color':'#111' } } }
+      var client = ShopifyBuy.buildClient({ domain: domain, storefrontAccessToken: token });
+      ShopifyBuy.UI.onReady(client).then(function(ui){
+        var attempts = 0;
+        function rendered(){
+          var ifr = mount.querySelector('iframe');
+          if (ifr) { try { return ifr.contentDocument && ifr.contentDocument.querySelectorAll('button').length > 0; } catch(e){ return true; } }
+          return mount.querySelectorAll('button').length > 0;
         }
+        function attempt(){
+          attempts++;
+          mount.innerHTML = '';
+          ui.createComponent('collection', {
+            id: colId,
+            node: mount,
+            moneyFormat: '%7B%7Bamount_with_comma_separator%7D%7D%20K%C4%8D',
+            options: {
+              product: { contents: { img: true, title: true, price: true, button: true }, text: { button: 'Přidat do košíku' } },
+              cart:    { text: { title: 'Košík', total: 'Mezisoučet', notice: '', button: 'Do pokladny' } }
+            }
+          });
+          // Storefront edge-cache může hned po publikaci vrátit null → zkusit znovu
+          setTimeout(function(){ if (!rendered() && attempts < 6) attempt(); }, 2500);
+        }
+        attempt();
       });
     }
     if (window.ShopifyBuy && window.ShopifyBuy.UI) { build(); }
