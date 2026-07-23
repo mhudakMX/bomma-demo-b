@@ -108,10 +108,12 @@
   function initA(token, domain, colId){
     var mount = $('a-mount'); mount.innerHTML = '';
     function build(){
-      var client = ShopifyBuy.buildClient({ domain: domain, storefrontAccessToken: token });
+      var client = ShopifyBuy.buildClient({ domain: domain, storefrontAccessToken: token, apiVersion: '2024-10' });
       var ui = ShopifyBuy.UI.init(client);
+      // Buy Button SDK chce ID kolekce jako base64 GID, ne číselné REST ID
+      var cid = /^\d+$/.test(colId) ? btoa('gid://shopify/Collection/' + colId) : colId;
       ui.createComponent('collection', {
-        id: colId,
+        id: cid,
         node: mount,
         moneyFormat: '%7B%7Bamount_with_comma_separator%7D%7D%20K%C4%8D',
         options: {
@@ -157,7 +159,7 @@
             '</template>' +
           '</shopify-list-context>' +
         '</template>' +
-        '<div slot="loading" class="empty">Načítám produkty…</div>' +
+        '<div shopify-loading-placeholder class="empty">Načítám produkty…</div>' +
       '</shopify-context>' +
       '<shopify-cart id="cart"></shopify-cart>';
     if (!loadedWC) {
